@@ -1,11 +1,9 @@
 @reference "../../../index.css";
 
-/* Main Content Section */
 .home-page__main {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
 }
 
-/* Header Section */
 .home-page__header {
   @apply mb-8;
 }

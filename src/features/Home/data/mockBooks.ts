@@ -1,9 +1,5 @@
 import type { Book } from "../types/book";
 
-/**
- * Datos mock de libros para desarrollo y demostración
- * En producción, estos datos vendrían de una API
- */
 export const MOCK_BOOKS: Book[] = [
   {
     id: "1",
