@@ -1,6 +1,8 @@
 import { Star, Heart, ShoppingCart } from "lucide-react";
 import type { Book } from "../types/book";
 import { Button } from "../../../components/ui/Button";
+import { useBookCard } from "../hooks/useBookCard";
+import { cn } from "../../../lib/utils";
 import "../styles/BookCard.css";
 
 interface BookCardProps {
@@ -9,6 +11,8 @@ interface BookCardProps {
 }
 
 export function BookCard({ book, onAddToCart }: BookCardProps) {
+  const { isFavorite, toggleFavorite, renderStars } = useBookCard();
+
   return (
     <div className="book-card">
       {/* Image Container */}
@@ -21,8 +25,13 @@ export function BookCard({ book, onAddToCart }: BookCardProps) {
         )}
 
         {/* Favorite Button */}
-        <button className="book-card__favorite-button">
-          <Heart className="book-card__favorite-icon" />
+        <button className="book-card__favorite-button" onClick={toggleFavorite}>
+          <Heart
+            className={cn(
+              "book-card__favorite-icon",
+              isFavorite && "fill-current text-red-500"
+            )}
+          />
         </button>
       </div>
 
@@ -36,14 +45,13 @@ export function BookCard({ book, onAddToCart }: BookCardProps) {
 
         {/* Rating */}
         <div className="book-card__rating">
-          {[...Array(5)].map((_, i) => (
+          {renderStars(book.rating).map((isFilled, i) => (
             <Star
               key={i}
-              className={`book-card__star ${
-                i < Math.floor(book.rating)
-                  ? "book-card__star--filled"
-                  : "book-card__star--empty"
-              }`}
+              className={cn(
+                "book-card__star",
+                isFilled ? "book-card__star--filled" : "book-card__star--empty"
+              )}
             />
           ))}
           <span className="book-card__reviews">({book.reviews})</span>

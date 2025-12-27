@@ -1,4 +1,4 @@
-@import "tailwindcss" reference;
+@reference "../../../index.css";
 
 .footer {
   @apply bg-gray-900 text-white mt-20;

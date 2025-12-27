@@ -1,4 +1,5 @@
 import { ShoppingCart, BookOpen, Search, Menu, User } from "lucide-react";
+import { useHeader } from "../hooks/useHeader";
 import "../styles/Header.css";
 
 type HeaderProps = {
@@ -12,6 +13,8 @@ export function Header({
   onCartClick,
   onSearchChange,
 }: HeaderProps) {
+  const { brandInfo } = useHeader();
+
   return (
     <header className="header">
       <div className="header__container">
@@ -19,7 +22,7 @@ export function Header({
           {/* Logo */}
           <div className="header__logo">
             <BookOpen className="header__logo-icon" />
-            <span className="header__logo-text">LibrosMundo</span>
+            <span className="header__logo-text">{brandInfo.name}</span>
           </div>
 
           {/* Search Bar */}
