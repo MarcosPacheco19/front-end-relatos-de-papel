@@ -1,6 +1,5 @@
 import { X, Plus, Minus, ShoppingBag } from "lucide-react";
 import type { CartItem } from "../../Home/types/book";
-import { FREE_SHIPPING_THRESHOLD, SHIPPING_COST } from "../../Home/constants";
 import {
   Drawer,
   DrawerContent,
@@ -11,6 +10,9 @@ import {
 } from "../../../components/ui/Drawer";
 import { Button } from "../../../components/ui/Button";
 import "../styles/Cart.css";
+
+const FREE_SHIPPING_THRESHOLD = 50;
+const SHIPPING_COST = 5.99;
 
 interface CartProps {
   isOpen: boolean;
