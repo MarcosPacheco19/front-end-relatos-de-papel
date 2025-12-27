@@ -1,0 +1,39 @@
+@reference "../../../index.css";
+
+.slider {
+  @apply relative flex w-full touch-none items-center select-none;
+  @apply data-disabled:opacity-50;
+  @apply data-[orientation=vertical]:h-full;
+  @apply data-[orientation=vertical]:min-h-44;
+  @apply data-[orientation=vertical]:w-auto;
+  @apply data-[orientation=vertical]:flex-col;
+}
+
+.slider__track {
+  @apply relative grow overflow-hidden rounded-full;
+  @apply bg-muted;
+  @apply data-[orientation=horizontal]:h-4;
+  @apply data-[orientation=horizontal]:w-full;
+  @apply data-[orientation=vertical]:h-full;
+  @apply data-[orientation=vertical]:w-1.5;
+}
+
+.slider__range {
+  @apply absolute;
+  @apply bg-primary;
+  @apply data-[orientation=horizontal]:h-full;
+  @apply data-[orientation=vertical]:w-full;
+}
+
+.slider__thumb {
+  @apply block size-4 shrink-0 rounded-full;
+  @apply border shadow-sm;
+  @apply border-primary;
+  @apply bg-background;
+  @apply ring-ring/50;
+  @apply transition-[color,box-shadow];
+  @apply hover:ring-4;
+  @apply focus-visible:ring-4;
+  @apply focus-visible:outline-hidden;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+}

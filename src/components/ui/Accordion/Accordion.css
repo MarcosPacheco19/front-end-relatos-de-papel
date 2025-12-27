@@ -1,0 +1,47 @@
+@reference "../../../index.css";
+
+.accordion__item {
+  @apply border-b;
+}
+
+.accordion__item:last-child {
+  @apply border-b-0;
+}
+
+.accordion__header {
+  @apply flex;
+}
+
+.accordion__trigger {
+  @apply flex flex-1 items-start justify-between gap-4;
+  @apply rounded-md py-4 text-left text-sm font-medium;
+  @apply transition-all outline-none;
+  @apply hover:underline;
+  @apply focus-visible:ring-ring focus-visible:ring-[3px];
+  @apply disabled:pointer-events-none disabled:opacity-50;
+}
+
+.accordion__trigger[data-state="open"] .accordion__icon {
+  @apply rotate-180;
+}
+
+.accordion__icon {
+  @apply text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5;
+  @apply transition-transform duration-200;
+}
+
+.accordion__content {
+  @apply overflow-hidden text-sm;
+}
+
+.accordion__content[data-state="open"] {
+  @apply animate-accordion-down;
+}
+
+.accordion__content[data-state="closed"] {
+  @apply animate-accordion-up;
+}
+
+.accordion__content-wrapper {
+  @apply pt-0 pb-4;
+}

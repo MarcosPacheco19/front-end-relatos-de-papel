@@ -1,0 +1,25 @@
+@reference "../../../index.css";
+
+.scroll-area {
+  @apply relative;
+}
+
+.scroll-area__viewport {
+  @apply focus-visible:ring-ring size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:outline-1;
+}
+
+.scroll-area__scrollbar {
+  @apply flex touch-none p-px transition-colors select-none;
+}
+
+.scroll-area__scrollbar--vertical {
+  @apply h-full w-2.5 border-l border-l-transparent;
+}
+
+.scroll-area__scrollbar--horizontal {
+  @apply h-2.5 flex-col border-t border-t-transparent;
+}
+
+.scroll-area__thumb {
+  @apply bg-border relative flex-1 rounded-full;
+}

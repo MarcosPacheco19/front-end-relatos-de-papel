@@ -1,0 +1,17 @@
+import { cn } from "../../../lib/utils";
+
+type SidebarGroupContentProps = React.ComponentProps<"div">;
+
+export function SidebarGroupContent({
+  className,
+  ...props
+}: SidebarGroupContentProps) {
+  return (
+    <div
+      data-slot="sidebar-group-content"
+      data-sidebar="group-content"
+      className={cn("sidebar__group-content", className)}
+      {...props}
+    />
+  );
+}

@@ -1,0 +1,84 @@
+@reference "../../../index.css";
+
+.chart {
+  @apply flex aspect-video justify-center text-xs;
+  @apply [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground;
+  @apply [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50;
+  @apply [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border;
+  @apply [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border;
+  @apply [&_.recharts-radial-bar-background-sector]:fill-muted;
+  @apply [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted;
+  @apply [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border;
+  @apply [&_.recharts-dot[stroke='#fff']]:stroke-transparent;
+  @apply [&_.recharts-layer]:outline-hidden;
+  @apply [&_.recharts-sector]:outline-hidden;
+  @apply [&_.recharts-sector[stroke='#fff']]:stroke-transparent;
+  @apply [&_.recharts-surface]:outline-hidden;
+}
+
+.chart__tooltip {
+  @apply border-border/50 bg-background grid min-w-[8rem] items-start gap-1.5;
+  @apply rounded-lg border px-2.5 py-1.5 text-xs shadow-xl;
+}
+
+.chart__tooltip-label {
+  @apply font-medium;
+}
+
+.chart__tooltip-item {
+  @apply [&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch gap-2;
+  @apply [&>svg]:h-2.5 [&>svg]:w-2.5;
+}
+
+.chart__tooltip-item--dot {
+  @apply items-center;
+}
+
+.chart__tooltip-indicator {
+  @apply shrink-0 rounded-[2px];
+}
+
+.chart__tooltip-indicator--dot {
+  @apply h-2.5 w-2.5;
+}
+
+.chart__tooltip-indicator--line {
+  @apply w-1;
+}
+
+.chart__tooltip-indicator--dashed {
+  @apply w-0 border-[1.5px] border-dashed bg-transparent;
+}
+
+.chart__tooltip-value {
+  @apply flex flex-1 justify-between leading-none;
+}
+
+.chart__tooltip-value--nest {
+  @apply items-end;
+}
+
+.chart__tooltip-value--inline {
+  @apply items-center;
+}
+
+.chart__legend {
+  @apply flex items-center justify-center gap-4;
+}
+
+.chart__legend--top {
+  @apply pb-3;
+}
+
+.chart__legend--bottom {
+  @apply pt-3;
+}
+
+.chart__legend-item {
+  @apply [&>svg]:text-muted-foreground flex items-center gap-1.5;
+  @apply [&>svg]:h-3 [&>svg]:w-3;
+}
+
+.chart__legend-indicator {
+  @apply h-2 w-2 shrink-0 rounded-[2px];
+}

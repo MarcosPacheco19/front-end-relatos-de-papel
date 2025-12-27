@@ -1,0 +1,5 @@
+@reference "../../../index.css";
+
+.toaster {
+  @apply pointer-events-auto;
+}

@@ -1,0 +1,13 @@
+@reference "../../../index.css";
+
+.avatar {
+  @apply relative flex size-10 shrink-0 overflow-hidden rounded-full;
+}
+
+.avatar__image {
+  @apply aspect-square size-full;
+}
+
+.avatar__fallback {
+  @apply bg-muted flex size-full items-center justify-center rounded-full;
+}

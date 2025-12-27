@@ -1,0 +1,301 @@
+@reference "../../../index.css";
+
+.sidebar-wrapper {
+  @apply flex min-h-svh w-full;
+  @apply has-data-[variant=inset]:bg-sidebar;
+}
+
+.sidebar {
+  @apply flex h-full w-(--sidebar-width) flex-col;
+  @apply bg-sidebar text-sidebar-foreground;
+}
+
+.sidebar__gap {
+  @apply relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear;
+  @apply group-data-[collapsible=offcanvas]:w-0;
+  @apply group-data-[side=right]:rotate-180;
+}
+
+.sidebar__gap--floating,
+.sidebar__gap--inset {
+  @apply group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))];
+}
+
+.sidebar__gap--default {
+  @apply group-data-[collapsible=icon]:w-(--sidebar-width-icon);
+}
+
+.sidebar__container {
+  @apply fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width);
+  @apply transition-[left,right,width] duration-200 ease-linear md:flex;
+}
+
+.sidebar__container--left {
+  @apply left-0;
+  @apply group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)];
+}
+
+.sidebar__container--right {
+  @apply right-0;
+  @apply group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)];
+}
+
+.sidebar__container--floating,
+.sidebar__container--inset {
+  @apply p-2;
+  @apply group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)];
+}
+
+.sidebar__container--default {
+  @apply group-data-[collapsible=icon]:w-(--sidebar-width-icon);
+  @apply group-data-[side=left]:border-r;
+  @apply group-data-[side=right]:border-l;
+}
+
+.sidebar__inner {
+  @apply flex h-full w-full flex-col;
+  @apply bg-sidebar;
+  @apply group-data-[variant=floating]:rounded-lg;
+  @apply group-data-[variant=floating]:border;
+  @apply group-data-[variant=floating]:border-sidebar-border;
+  @apply group-data-[variant=floating]:shadow-sm;
+}
+
+.sidebar__trigger {
+  @apply size-7;
+}
+
+.sidebar__rail {
+  @apply absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear;
+  @apply group-data-[side=left]:-right-4;
+  @apply group-data-[side=right]:left-0;
+  @apply after:absolute after:inset-y-0 after:left-1/2 after:w-0.5;
+  @apply hover:after:bg-sidebar-border;
+  @apply sm:flex;
+  @apply in-data-[side=left]:cursor-w-resize;
+  @apply in-data-[side=right]:cursor-e-resize;
+  @apply [[data-side=left][data-state=collapsed]_&]:cursor-e-resize;
+  @apply [[data-side=right][data-state=collapsed]_&]:cursor-w-resize;
+  @apply hover:group-data-[collapsible=offcanvas]:bg-sidebar;
+  @apply group-data-[collapsible=offcanvas]:translate-x-0;
+  @apply group-data-[collapsible=offcanvas]:after:left-full;
+  @apply [[data-side=left][data-collapsible=offcanvas]_&]:-right-2;
+  @apply [[data-side=right][data-collapsible=offcanvas]_&]:-left-2;
+}
+
+.sidebar__inset {
+  @apply relative flex w-full flex-1 flex-col;
+  @apply bg-background;
+  @apply md:peer-data-[variant=inset]:m-2;
+  @apply md:peer-data-[variant=inset]:ml-0;
+  @apply md:peer-data-[variant=inset]:rounded-xl;
+  @apply md:peer-data-[variant=inset]:shadow-sm;
+  @apply md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2;
+}
+
+.sidebar__input {
+  @apply h-8 w-full shadow-none;
+  @apply bg-background;
+}
+
+.sidebar__header {
+  @apply flex flex-col gap-2 p-2;
+}
+
+.sidebar__footer {
+  @apply flex flex-col gap-2 p-2;
+}
+
+.sidebar__separator {
+  @apply mx-2 w-auto;
+  @apply bg-sidebar-border;
+}
+
+.sidebar__content {
+  @apply flex min-h-0 flex-1 flex-col gap-2 overflow-auto;
+  @apply group-data-[collapsible=icon]:overflow-hidden;
+}
+
+.sidebar__group {
+  @apply relative flex w-full min-w-0 flex-col p-2;
+}
+
+.sidebar__group-label {
+  @apply flex h-8 shrink-0 items-center rounded-md px-2;
+  @apply text-xs font-medium;
+  @apply text-sidebar-foreground/70;
+  @apply outline-hidden;
+  @apply ring-sidebar-ring;
+  @apply focus-visible:ring-2;
+  @apply transition-[margin,opacity] duration-200 ease-linear;
+  @apply [&>svg]:size-4 [&>svg]:shrink-0;
+  @apply group-data-[collapsible=icon]:-mt-8;
+  @apply group-data-[collapsible=icon]:opacity-0;
+}
+
+.sidebar__group-action {
+  @apply absolute top-3.5 right-3;
+  @apply flex aspect-square w-5 items-center justify-center rounded-md p-0;
+  @apply text-sidebar-foreground;
+  @apply outline-hidden;
+  @apply ring-sidebar-ring;
+  @apply hover:bg-sidebar-accent;
+  @apply hover:text-sidebar-accent-foreground;
+  @apply focus-visible:ring-2;
+  @apply transition-transform;
+  @apply [&>svg]:size-4 [&>svg]:shrink-0;
+  @apply after:absolute after:-inset-2;
+  @apply md:after:hidden;
+  @apply group-data-[collapsible=icon]:hidden;
+}
+
+.sidebar__group-content {
+  @apply w-full text-sm;
+}
+
+.sidebar__menu {
+  @apply flex w-full min-w-0 flex-col gap-1;
+}
+
+.sidebar__menu-item {
+  @apply group/menu-item relative;
+}
+
+.sidebar__menu-button {
+  @apply peer/menu-button;
+  @apply flex w-full items-center gap-2 overflow-hidden rounded-md p-2;
+  @apply text-left text-sm;
+  @apply outline-hidden;
+  @apply ring-sidebar-ring;
+  @apply transition-[width,height,padding];
+  @apply hover:bg-sidebar-accent;
+  @apply hover:text-sidebar-accent-foreground;
+  @apply focus-visible:ring-2;
+  @apply active:bg-sidebar-accent;
+  @apply active:text-sidebar-accent-foreground;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply group-has-data-[sidebar=menu-action]/menu-item:pr-8;
+  @apply aria-disabled:pointer-events-none aria-disabled:opacity-50;
+  @apply data-[active=true]:bg-sidebar-accent;
+  @apply data-[active=true]:font-medium;
+  @apply data-[active=true]:text-sidebar-accent-foreground;
+  @apply data-[state=open]:hover:bg-sidebar-accent;
+  @apply data-[state=open]:hover:text-sidebar-accent-foreground;
+  @apply group-data-[collapsible=icon]:size-8!;
+  @apply group-data-[collapsible=icon]:p-2!;
+  @apply [&>span:last-child]:truncate;
+  @apply [&>svg]:size-4 [&>svg]:shrink-0;
+}
+
+.sidebar__menu-button--outline {
+  @apply bg-background;
+  @apply shadow-[0_0_0_1px_hsl(var(--sidebar-border))];
+  @apply hover:bg-sidebar-accent;
+  @apply hover:text-sidebar-accent-foreground;
+  @apply hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))];
+}
+
+.sidebar__menu-button--sm {
+  @apply h-7 text-xs;
+}
+
+.sidebar__menu-button--default {
+  @apply h-8 text-sm;
+}
+
+.sidebar__menu-button--lg {
+  @apply h-12 text-sm;
+  @apply group-data-[collapsible=icon]:p-0!;
+}
+
+.sidebar__menu-action {
+  @apply absolute top-1.5 right-1;
+  @apply flex aspect-square w-5 items-center justify-center rounded-md p-0;
+  @apply text-sidebar-foreground;
+  @apply outline-hidden;
+  @apply ring-sidebar-ring;
+  @apply hover:bg-sidebar-accent;
+  @apply hover:text-sidebar-accent-foreground;
+  @apply peer-hover/menu-button:text-sidebar-accent-foreground;
+  @apply focus-visible:ring-2;
+  @apply transition-transform;
+  @apply [&>svg]:size-4 [&>svg]:shrink-0;
+  @apply after:absolute after:-inset-2;
+  @apply md:after:hidden;
+  @apply peer-data-[size=sm]/menu-button:top-1;
+  @apply peer-data-[size=default]/menu-button:top-1.5;
+  @apply peer-data-[size=lg]/menu-button:top-2.5;
+  @apply group-data-[collapsible=icon]:hidden;
+}
+
+.sidebar__menu-action--show-on-hover {
+  @apply peer-data-[active=true]/menu-button:text-sidebar-accent-foreground;
+  @apply group-focus-within/menu-item:opacity-100;
+  @apply group-hover/menu-item:opacity-100;
+  @apply data-[state=open]:opacity-100;
+  @apply md:opacity-0;
+}
+
+.sidebar__menu-badge {
+  @apply pointer-events-none absolute right-1;
+  @apply flex h-5 min-w-5 items-center justify-center rounded-md px-1;
+  @apply text-xs font-medium tabular-nums select-none;
+  @apply text-sidebar-foreground;
+  @apply peer-hover/menu-button:text-sidebar-accent-foreground;
+  @apply peer-data-[active=true]/menu-button:text-sidebar-accent-foreground;
+  @apply peer-data-[size=sm]/menu-button:top-1;
+  @apply peer-data-[size=default]/menu-button:top-1.5;
+  @apply peer-data-[size=lg]/menu-button:top-2.5;
+  @apply group-data-[collapsible=icon]:hidden;
+}
+
+.sidebar__menu-skeleton {
+  @apply flex h-8 items-center gap-2 rounded-md px-2;
+}
+
+.sidebar__menu-skeleton-icon {
+  @apply size-4 rounded-md;
+}
+
+.sidebar__menu-skeleton-text {
+  @apply h-4 max-w-(--skeleton-width) flex-1;
+}
+
+.sidebar__menu-sub {
+  @apply mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 px-2.5 py-0.5;
+  @apply border-l;
+  @apply border-sidebar-border;
+  @apply group-data-[collapsible=icon]:hidden;
+}
+
+.sidebar__menu-sub-item {
+  @apply group/menu-sub-item relative;
+}
+
+.sidebar__menu-sub-button {
+  @apply flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2;
+  @apply text-sidebar-foreground;
+  @apply outline-hidden;
+  @apply ring-sidebar-ring;
+  @apply hover:bg-sidebar-accent;
+  @apply hover:text-sidebar-accent-foreground;
+  @apply active:bg-sidebar-accent;
+  @apply active:text-sidebar-accent-foreground;
+  @apply [&>svg]:text-sidebar-accent-foreground;
+  @apply focus-visible:ring-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply aria-disabled:pointer-events-none aria-disabled:opacity-50;
+  @apply [&>span:last-child]:truncate;
+  @apply [&>svg]:size-4 [&>svg]:shrink-0;
+  @apply data-[active=true]:bg-sidebar-accent;
+  @apply data-[active=true]:text-sidebar-accent-foreground;
+  @apply group-data-[collapsible=icon]:hidden;
+}
+
+.sidebar__menu-sub-button--sm {
+  @apply text-xs;
+}
+
+.sidebar__menu-sub-button--md {
+  @apply text-sm;
+}

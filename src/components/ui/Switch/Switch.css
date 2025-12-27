@@ -1,0 +1,23 @@
+@reference "../../../index.css";
+
+.switch {
+  @apply peer inline-flex h-[1.15rem] w-8 shrink-0 items-center rounded-full;
+  @apply border border-transparent;
+  @apply transition-all outline-none;
+  @apply focus-visible:ring-ring;
+  @apply focus-visible:ring-[3px];
+  @apply disabled:cursor-not-allowed disabled:opacity-50;
+  @apply data-[state=checked]:bg-primary;
+  @apply data-[state=unchecked]:bg-switch-background;
+  @apply dark:data-[state=unchecked]:bg-input/80;
+}
+
+.switch__thumb {
+  @apply pointer-events-none block size-4 rounded-full ring-0;
+  @apply transition-transform;
+  @apply bg-card;
+  @apply data-[state=checked]:translate-x-[calc(100%-2px)];
+  @apply data-[state=unchecked]:translate-x-0;
+  @apply dark:data-[state=unchecked]:bg-card-foreground;
+  @apply dark:data-[state=checked]:bg-primary-foreground;
+}

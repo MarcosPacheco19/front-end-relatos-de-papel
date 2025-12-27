@@ -1,0 +1,118 @@
+@reference "../../../index.css";
+
+.book-card {
+  @apply bg-white rounded-xl shadow-md transition-all duration-300 overflow-hidden;
+}
+
+.book-card:hover {
+  @apply shadow-xl;
+}
+
+/* Image Container */
+.book-card__image-container {
+  @apply relative aspect-3/4 overflow-hidden bg-gray-100;
+}
+
+.book-card__image {
+  @apply w-full h-full object-cover transition-transform duration-300;
+}
+
+.book-card:hover .book-card__image {
+  @apply scale-105;
+}
+
+/* Badges */
+.book-card__discount-badge {
+  @apply absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-sm;
+}
+
+.book-card__favorite-button {
+  @apply absolute top-2 left-2 p-2 bg-white rounded-full opacity-0 transition-opacity;
+}
+
+.book-card:hover .book-card__favorite-button {
+  @apply opacity-100;
+}
+
+.book-card__favorite-button:hover {
+  @apply bg-red-50;
+}
+
+.book-card__favorite-icon {
+  @apply w-5 h-5 text-gray-600;
+}
+
+.book-card__favorite-icon:hover {
+  @apply text-red-500;
+}
+
+/* Content */
+.book-card__content {
+  @apply p-4;
+}
+
+.book-card__category {
+  @apply text-sm text-indigo-600 mb-1;
+}
+
+.book-card__title {
+  @apply text-lg mb-1 line-clamp-2 transition;
+}
+
+.book-card:hover .book-card__title {
+  @apply text-indigo-600;
+}
+
+.book-card__author {
+  @apply text-sm text-gray-600 mb-3;
+}
+
+/* Rating */
+.book-card__rating {
+  @apply flex items-center gap-1 mb-3;
+}
+
+.book-card__star {
+  @apply w-4 h-4;
+}
+
+.book-card__star--filled {
+  @apply fill-yellow-400 text-yellow-400;
+}
+
+.book-card__star--empty {
+  @apply text-gray-300;
+}
+
+.book-card__reviews {
+  @apply text-sm text-gray-600 ml-1;
+}
+
+/* Price and Action */
+.book-card__footer {
+  @apply flex items-center justify-between;
+}
+
+.book-card__price-container {
+  @apply flex items-center gap-2;
+}
+
+.book-card__price {
+  @apply text-xl text-gray-900;
+}
+
+.book-card__original-price {
+  @apply text-sm text-gray-400 line-through;
+}
+
+.book-card__add-button {
+  @apply flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg transition;
+}
+
+.book-card__add-button:hover {
+  @apply bg-indigo-700;
+}
+
+.book-card__add-icon {
+  @apply w-4 h-4;
+}

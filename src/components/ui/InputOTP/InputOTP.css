@@ -1,0 +1,29 @@
+@reference "../../../index.css";
+
+.input-otp {
+  @apply disabled:cursor-not-allowed;
+}
+
+.input-otp__container {
+  @apply flex items-center gap-2 has-disabled:opacity-50;
+}
+
+.input-otp__group {
+  @apply flex items-center gap-1;
+}
+
+.input-otp__slot {
+  @apply data-[active=true]:ring-ring data-[active=true]:aria-invalid:ring-destructive dark:data-[active=true]:aria-invalid:ring-destructive dark:bg-input/30 border-input relative flex h-9 w-9 items-center justify-center border-y border-r text-sm bg-input-background transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[3px];
+}
+
+.input-otp__caret {
+  @apply pointer-events-none absolute inset-0 flex items-center justify-center;
+}
+
+.input-otp__caret-line {
+  @apply animate-caret-blink bg-foreground h-4 w-px duration-1000;
+}
+
+.input-otp__separator {
+  @apply flex items-center justify-center;
+}

@@ -1,0 +1,25 @@
+@reference "../../../index.css";
+
+.form {
+  @apply relative;
+}
+
+.form__item {
+  @apply grid gap-2;
+}
+
+.form__label {
+  @apply cursor-pointer;
+}
+
+.form__label[data-error="true"] {
+  @apply text-destructive;
+}
+
+.form__description {
+  @apply text-muted-foreground text-sm;
+}
+
+.form__message {
+  @apply text-destructive text-sm;
+}

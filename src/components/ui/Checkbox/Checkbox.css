@@ -1,0 +1,16 @@
+@reference "../../../index.css";
+
+.checkbox {
+  @apply peer border bg-input-background size-4 shrink-0 rounded-[4px] border shadow-xs;
+  @apply transition-shadow outline-none;
+  @apply focus-visible:border-ring focus-visible:ring-ring focus-visible:ring-[3px];
+  @apply aria-invalid:ring-destructive aria-invalid:border-destructive;
+  @apply dark:bg-input/30 dark:aria-invalid:ring-destructive;
+  @apply data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground;
+  @apply data-[state=checked]:border-primary dark:data-[state=checked]:bg-primary;
+  @apply disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.checkbox__indicator {
+  @apply flex items-center justify-center text-current transition-none;
+}

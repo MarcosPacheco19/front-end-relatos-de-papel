@@ -1,0 +1,13 @@
+@reference "../../../index.css";
+
+.collapsible {
+  @apply w-full;
+}
+
+.collapsible__trigger {
+  @apply w-full;
+}
+
+.collapsible__content {
+  @apply overflow-hidden;
+}

@@ -1,0 +1,41 @@
+@reference "../../../index.css";
+
+/* Main Content Section */
+.home-page__main {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12;
+}
+
+/* Header Section */
+.home-page__header {
+  @apply mb-8;
+}
+
+.home-page__title {
+  @apply text-3xl mb-2;
+}
+
+.home-page__subtitle {
+  @apply text-gray-600;
+}
+
+/* Books Grid */
+.home-page__grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+}
+
+/* Empty State */
+.home-page__empty {
+  @apply text-center py-20;
+}
+
+.home-page__empty-message {
+  @apply text-xl text-gray-500;
+}
+
+.home-page__empty-button {
+  @apply mt-4 px-6 py-2 bg-indigo-600 text-white rounded-lg transition;
+}
+
+.home-page__empty-button:hover {
+  @apply bg-indigo-700;
+}

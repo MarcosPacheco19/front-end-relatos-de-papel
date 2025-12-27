@@ -1,0 +1,81 @@
+@reference "../../../index.css";
+
+.cart__content {
+  @apply flex-1 overflow-y-auto p-4 sm:p-6;
+}
+
+.cart__empty {
+  @apply text-center py-20;
+}
+
+.cart__empty-icon {
+  @apply w-16 h-16 mx-auto text-gray-300 mb-4;
+}
+
+.cart__empty-title {
+  @apply text-xl text-gray-500 mb-2;
+}
+
+.cart__empty-subtitle {
+  @apply text-gray-400;
+}
+
+.cart__items {
+  @apply space-y-4;
+}
+
+.cart__item {
+  @apply flex gap-4 bg-gray-50 rounded-lg p-4;
+}
+
+.cart__item-image {
+  @apply w-20 h-28 object-cover rounded;
+}
+
+.cart__item-details {
+  @apply flex-1;
+}
+
+.cart__item-title {
+  @apply mb-1 line-clamp-2 font-medium;
+}
+
+.cart__item-author {
+  @apply text-sm text-gray-600 mb-2;
+}
+
+.cart__item-footer {
+  @apply flex items-center justify-between;
+}
+
+.cart__item-price {
+  @apply text-lg font-semibold;
+}
+
+.cart__quantity-icon {
+  @apply w-4 h-4;
+}
+
+.cart__quantity-value {
+  @apply w-8 text-center font-medium;
+}
+
+.cart__remove-icon {
+  @apply w-5 h-5;
+}
+
+.cart__summary {
+  @apply space-y-2;
+}
+
+.cart__summary-row {
+  @apply flex justify-between text-gray-600;
+}
+
+.cart__shipping-message {
+  @apply text-sm text-indigo-600;
+}
+
+.cart__total {
+  @apply flex justify-between text-xl font-semibold pt-2 border-t border-gray-200;
+}

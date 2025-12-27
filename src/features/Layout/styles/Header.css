@@ -1,0 +1,127 @@
+@reference "../../../index.css";
+
+.header {
+  @apply sticky top-0 z-50 bg-white border-b border-gray-200;
+}
+
+.header__container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.header__content {
+  @apply flex items-center justify-between h-16;
+}
+
+.header__logo {
+  @apply flex items-center gap-2;
+}
+
+.header__logo-icon {
+  @apply w-8 h-8 text-indigo-600;
+}
+
+.header__logo-text {
+  @apply text-2xl text-gray-900;
+}
+
+.header__search {
+  @apply hidden md:flex flex-1 max-w-md mx-8;
+}
+
+.header__search-wrapper {
+  @apply relative w-full;
+}
+
+.header__search-icon {
+  @apply absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400;
+}
+
+.header__search-input {
+  @apply w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg;
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
+}
+
+.header__actions {
+  @apply flex items-center gap-4;
+}
+
+.header__account {
+  @apply hidden sm:flex items-center gap-2 px-4 py-2;
+  @apply text-gray-700 hover:text-indigo-600 transition;
+}
+
+.header__account-icon {
+  @apply w-5 h-5;
+}
+
+.header__cart {
+  @apply relative flex items-center gap-2 px-4 py-2;
+  @apply bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition;
+}
+
+.header__cart-icon {
+  @apply w-5 h-5;
+}
+
+.header__cart-text {
+  @apply hidden sm:inline;
+}
+
+.header__cart-badge {
+  @apply absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full;
+  @apply w-6 h-6 flex items-center justify-center;
+}
+
+.header__menu {
+  @apply md:hidden p-2 text-gray-700 hover:text-indigo-600;
+}
+
+.header__menu-icon {
+  @apply w-6 h-6;
+}
+
+.header__mobile-search {
+  @apply md:hidden pb-4;
+}
+
+.header__mobile-search-wrapper {
+  @apply relative;
+}
+
+.header__mobile-search-input {
+  @apply w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg;
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
+}
+
+.header__cart {
+  @apply relative flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700;
+}
+
+.header__cart-icon {
+  @apply w-5 h-5;
+}
+
+.header__cart-text {
+  @apply hidden sm:inline;
+}
+
+.header__cart-badge {
+  @apply absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full;
+  @apply w-6 h-6 flex items-center justify-center;
+}
+
+.header__menu {
+  @apply md:hidden;
+}
+
+.header__menu-icon {
+  @apply w-6 h-6;
+}
+
+.header__mobile-search {
+  @apply md:hidden pb-4;
+}
+
+.header__mobile-search-wrapper {
+  @apply relative;
+}

@@ -1,0 +1,17 @@
+@reference "../../../index.css";
+
+.pagination {
+  @apply mx-auto flex w-full justify-center;
+}
+
+.pagination__content {
+  @apply flex flex-row items-center gap-1;
+}
+
+.pagination__link {
+  @apply cursor-pointer;
+}
+
+.pagination__ellipsis {
+  @apply flex size-9 items-center justify-center;
+}

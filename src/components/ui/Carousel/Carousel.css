@@ -1,0 +1,53 @@
+@reference "../../../index.css";
+
+.carousel {
+  @apply relative;
+}
+
+.carousel__content {
+  @apply overflow-hidden;
+}
+
+.carousel__content-wrapper {
+  @apply flex;
+}
+
+.carousel__content-wrapper--horizontal {
+  @apply -ml-4;
+}
+
+.carousel__content-wrapper--vertical {
+  @apply -mt-4 flex-col;
+}
+
+.carousel__item {
+  @apply min-w-0 shrink-0 grow-0 basis-full;
+}
+
+.carousel__item--horizontal {
+  @apply pl-4;
+}
+
+.carousel__item--vertical {
+  @apply pt-4;
+}
+
+.carousel__button {
+  @apply absolute size-8 rounded-full;
+}
+
+.carousel__button--previous-horizontal {
+  @apply top-1/2 -left-12 -translate-y-1/2;
+}
+
+.carousel__button--previous-vertical {
+  @apply -top-12 left-1/2 -translate-x-1/2 rotate-90;
+}
+
+.carousel__button--next-horizontal {
+  @apply top-1/2 -right-12 -translate-y-1/2;
+}
+
+.carousel__button--next-vertical {
+  @apply -bottom-12 left-1/2 -translate-x-1/2 rotate-90;
+}

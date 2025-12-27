@@ -1,0 +1,106 @@
+@reference "../../../index.css";
+
+.calendar {
+  @apply p-3;
+}
+
+.calendar__months {
+  @apply flex flex-col sm:flex-row gap-2;
+}
+
+.calendar__month {
+  @apply flex flex-col gap-4;
+}
+
+.calendar__caption {
+  @apply flex justify-center pt-1 relative items-center w-full;
+}
+
+.calendar__caption-label {
+  @apply text-sm font-medium;
+}
+
+.calendar__nav {
+  @apply flex items-center gap-1;
+}
+
+.calendar__nav-button {
+  @apply size-7 bg-transparent p-0 opacity-50 hover:opacity-100;
+}
+
+.calendar__nav-button--previous {
+  @apply absolute left-1;
+}
+
+.calendar__nav-button--next {
+  @apply absolute right-1;
+}
+
+.calendar__table {
+  @apply w-full border-collapse space-x-1;
+}
+
+.calendar__head-row {
+  @apply flex;
+}
+
+.calendar__head-cell {
+  @apply text-muted-foreground rounded-md w-8 font-normal text-[0.8rem];
+}
+
+.calendar__row {
+  @apply flex w-full mt-2;
+}
+
+.calendar__cell {
+  @apply relative p-0 text-center text-sm focus-within:relative focus-within:z-20;
+  @apply [&:has([aria-selected])]:bg-accent;
+  @apply [&:has([aria-selected].day-range-end)]:rounded-r-md;
+}
+
+.calendar__cell--range {
+  @apply [&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md;
+  @apply first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md;
+}
+
+.calendar__cell--single {
+  @apply [&:has([aria-selected])]:rounded-md;
+}
+
+.calendar__day {
+  @apply size-8 p-0 font-normal aria-selected:opacity-100;
+}
+
+.calendar__day--range-start {
+  @apply day-range-start aria-selected:bg-primary aria-selected:text-primary-foreground;
+}
+
+.calendar__day--range-end {
+  @apply day-range-end aria-selected:bg-primary aria-selected:text-primary-foreground;
+}
+
+.calendar__day--selected {
+  @apply bg-primary text-primary-foreground;
+  @apply hover:bg-primary hover:text-primary-foreground;
+  @apply focus:bg-primary focus:text-primary-foreground;
+}
+
+.calendar__day--today {
+  @apply bg-accent text-accent-foreground;
+}
+
+.calendar__day--outside {
+  @apply day-outside text-muted-foreground aria-selected:text-muted-foreground;
+}
+
+.calendar__day--disabled {
+  @apply text-muted-foreground opacity-50;
+}
+
+.calendar__day--range-middle {
+  @apply aria-selected:bg-accent aria-selected:text-accent-foreground;
+}
+
+.calendar__day--hidden {
+  @apply invisible;
+}

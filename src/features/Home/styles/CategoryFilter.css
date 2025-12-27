@@ -1,0 +1,35 @@
+@reference "../../../index.css";
+
+.category-filter {
+  @apply bg-white border-b border-gray-200 sticky top-16 z-40;
+}
+
+.category-filter__container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.category-filter__list {
+  @apply flex gap-2 py-4 overflow-x-auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.category-filter__list::-webkit-scrollbar {
+  display: none;
+}
+
+.category-filter__button {
+  @apply px-4 py-2 rounded-full whitespace-nowrap transition;
+}
+
+.category-filter__button--active {
+  @apply bg-indigo-600 text-white;
+}
+
+.category-filter__button--inactive {
+  @apply bg-gray-100 text-gray-700;
+}
+
+.category-filter__button--inactive:hover {
+  @apply bg-gray-200;
+}

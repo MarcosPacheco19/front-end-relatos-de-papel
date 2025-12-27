@@ -1,0 +1,33 @@
+@reference "../../../index.css";
+
+.tabs {
+  @apply flex flex-col gap-2;
+}
+
+.tabs__list {
+  @apply inline-flex h-9 w-fit items-center justify-center rounded-xl p-0.75;
+  @apply bg-muted text-muted-foreground;
+}
+
+.tabs__trigger {
+  @apply inline-flex h-[calc(100%-1px)] items-center justify-center gap-1.5;
+  @apply flex-1;
+  @apply rounded-xl border border-transparent px-2 py-1;
+  @apply text-sm font-medium whitespace-nowrap;
+  @apply text-foreground dark:text-muted-foreground;
+  @apply transition-[color,box-shadow];
+  @apply focus-visible:ring-ring;
+  @apply focus-visible:ring-[3px];
+  @apply focus-visible:outline-1;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply data-[state=active]:bg-card;
+  @apply dark:data-[state=active]:text-foreground;
+  @apply dark:data-[state=active]:border-input;
+  @apply dark:data-[state=active]:bg-input/30;
+  @apply [&_svg]:pointer-events-none [&_svg]:shrink-0;
+  @apply [&_svg:not([class*='size-'])]:size-4;
+}
+
+.tabs__content {
+  @apply flex-1 outline-none;
+}

@@ -1,0 +1,17 @@
+@reference "../../../index.css";
+
+.input {
+  @apply placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base bg-input-background transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm;
+}
+
+.input::file-selector-button {
+  @apply text-foreground inline-flex h-7 border-0 bg-transparent text-sm font-medium;
+}
+
+.input:focus-visible {
+  @apply ring-ring ring-[3px];
+}
+
+.input:aria-invalid {
+  @apply ring-destructive dark:ring-destructive;
+}

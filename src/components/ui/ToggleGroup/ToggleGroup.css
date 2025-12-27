@@ -1,0 +1,15 @@
+@reference "../../../index.css";
+
+.toggle-group {
+  @apply flex w-fit items-center rounded-md;
+  @apply data-[variant=outline]:shadow-xs;
+}
+
+.toggle-group__item {
+  @apply min-w-0 flex-1 shrink-0 rounded-none shadow-none;
+  @apply first:rounded-l-md last:rounded-r-md;
+  @apply focus:z-10;
+  @apply focus-visible:z-10;
+  @apply data-[variant=outline]:border-l-0;
+  @apply data-[variant=outline]:first:border-l;
+}

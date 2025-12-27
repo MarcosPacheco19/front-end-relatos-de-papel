@@ -1,0 +1,66 @@
+@reference "../../../index.css";
+
+.hero {
+  @apply relative bg-linear-to-r from-indigo-600 to-purple-600 text-white;
+}
+
+.hero__container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20;
+}
+
+.hero__content {
+  @apply text-center;
+}
+
+.hero__title {
+  @apply text-5xl md:text-6xl mb-6;
+}
+
+.hero__subtitle {
+  @apply text-xl md:text-2xl mb-8 text-indigo-100;
+}
+
+.hero__actions {
+  @apply flex flex-wrap justify-center gap-4;
+}
+
+.hero__button {
+  @apply px-8 py-3 rounded-lg transition;
+}
+
+.hero__button--primary {
+  @apply bg-white text-indigo-600;
+}
+
+.hero__button--primary:hover {
+  @apply bg-gray-100;
+}
+
+.hero__button--secondary {
+  @apply bg-indigo-700 text-white border-2 border-white;
+}
+
+.hero__button--secondary:hover {
+  @apply bg-indigo-800;
+}
+
+/* Stats Section */
+.hero__stats {
+  @apply bg-indigo-700 border-t border-indigo-500;
+}
+
+.hero__stats-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8;
+}
+
+.hero__stats-grid {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-8 text-center;
+}
+
+.hero__stat-value {
+  @apply text-3xl mb-2;
+}
+
+.hero__stat-label {
+  @apply text-indigo-200;
+}

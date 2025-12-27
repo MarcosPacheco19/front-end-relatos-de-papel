@@ -1,0 +1,45 @@
+@reference "../../../index.css";
+
+.alert-dialog__overlay {
+  @apply fixed inset-0 z-50 bg-black/50;
+}
+
+.alert-dialog__overlay[data-state="open"] {
+  @apply animate-in fade-in-0;
+}
+
+.alert-dialog__overlay[data-state="closed"] {
+  @apply animate-out fade-out-0;
+}
+
+.alert-dialog__content {
+  @apply bg-background fixed top-[50%] left-[50%] z-50;
+  @apply grid w-full max-w-[calc(100%-2rem)] gap-4;
+  @apply translate-x-[-50%] translate-y-[-50%];
+  @apply rounded-lg border p-6 shadow-lg duration-200;
+  @apply sm:max-w-lg;
+}
+
+.alert-dialog__content[data-state="open"] {
+  @apply animate-in fade-in-0 zoom-in-95;
+}
+
+.alert-dialog__content[data-state="closed"] {
+  @apply animate-out fade-out-0 zoom-out-95;
+}
+
+.alert-dialog__header {
+  @apply flex flex-col gap-2 text-center sm:text-left;
+}
+
+.alert-dialog__footer {
+  @apply flex flex-col-reverse gap-2 sm:flex-row sm:justify-end;
+}
+
+.alert-dialog__title {
+  @apply text-lg font-semibold;
+}
+
+.alert-dialog__description {
+  @apply text-muted-foreground text-sm;
+}

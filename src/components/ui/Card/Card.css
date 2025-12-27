@@ -1,0 +1,30 @@
+@reference "../../../index.css";
+
+.card {
+  @apply bg-card text-card-foreground flex flex-col gap-6 rounded-xl border;
+}
+
+.card__header {
+  @apply @container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5;
+  @apply px-6 pt-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6;
+}
+
+.card__title {
+  @apply leading-none;
+}
+
+.card__description {
+  @apply text-muted-foreground;
+}
+
+.card__action {
+  @apply col-start-2 row-span-2 row-start-1 self-start justify-self-end;
+}
+
+.card__content {
+  @apply px-6 [&:last-child]:pb-6;
+}
+
+.card__footer {
+  @apply flex items-center px-6 pb-6 [.border-t]:pt-6;
+}
