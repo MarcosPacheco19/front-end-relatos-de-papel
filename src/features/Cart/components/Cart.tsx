@@ -10,6 +10,7 @@ import {
 } from "../../../components/ui/Drawer";
 import { Button } from "../../../components/ui/Button";
 import "../styles/Cart.css";
+import { useNavigate } from "react-router-dom";
 
 const FREE_SHIPPING_THRESHOLD = 50;
 const SHIPPING_COST = 5.99;
@@ -29,6 +30,8 @@ export function Cart({
   onUpdateQuantity,
   onRemoveItem,
 }: CartProps) {
+  const navigate = useNavigate();
+
   const subtotal = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
@@ -139,7 +142,7 @@ export function Cart({
                 <span>${total.toFixed(2)}</span>
               </div>
             </div>
-            <Button className="w-full">Proceder al Pago</Button>
+            <Button className="w-full" onClick={() => navigate("/checkout")} >Proceder al Pago</Button>
           </DrawerFooter>
         )}
       </DrawerContent>

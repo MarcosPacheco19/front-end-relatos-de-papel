@@ -1,0 +1,146 @@
+.checkout-page{
+  display:flex;
+  justify-content:center;
+  padding:2rem;
+  box-sizing:border-box;
+  min-height: calc(100vh - 120px);
+  background: #f7fafc;
+}
+
+.checkout-card{
+  width:680px;
+  max-width:100%;
+  background:#ffffff;
+  padding:1.5rem;
+  border-radius:12px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.06);
+  box-sizing:border-box;
+}
+
+.checkout-card__title{
+    font-size:1.5rem;
+    margin:0 0 1rem 0
+}
+
+.checkout-card__list{
+    margin:0 0 1rem 0;
+    padding:0;
+    list-style:none
+}
+
+.checkout-card__item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0.6rem 0;
+    border-bottom:1px solid #f1f5f9
+}
+
+
+.checkout-form__row{
+        display:flex;
+        gap:0.75rem
+}
+.checkout-form__field{
+        flex:1;
+        min-width:0
+}
+.checkout-form__input--small{
+        max-width:140px
+}
+.checkout-form__input--cvv{
+        max-width:100px
+}
+.checkout-card__item:last-child{
+    border-bottom:none
+}
+
+.checkout-card__item-title{
+    font-weight:600
+}
+
+.checkout-card__item-meta{
+    font-size:0.9rem;
+    color:#64748b
+}
+    .checkout-form__row{
+            flex-direction:column
+    }
+    .checkout-form__input--small{
+            max-width:100%
+    }
+
+.checkout-card__total{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0.75rem 0;
+    font-weight:700;
+    font-size:1.1rem;
+    margin-top:0.5rem
+}
+
+.checkout-form{
+    margin-top:1rem;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0.75rem
+}
+
+.checkout-form__label{
+    font-size:0.9rem;
+    color:#0f172a;
+    margin-bottom: 8px;
+}
+
+.checkout-form__input{
+    width:100%;
+    padding:0.7rem;
+    border:1px solid #e6eef5;
+    border-radius:8px;
+    font-size:1rem;
+    box-sizing:border-box
+}
+
+.checkout-actions{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:1rem
+}
+
+.checkout-actions__total{
+    font-weight:700
+}
+
+.checkout-actions__btn{
+    background:#0f172a;
+    color:#fff;
+    padding:0.75rem 1rem;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    font-weight:600
+}
+
+.checkout-actions__btn:disabled{
+    opacity:0.6;
+    cursor:not-allowed
+}
+
+@media (max-width:640px){
+  .checkout-card{
+    padding:1rem;
+    border-radius:10px
+}
+
+  .checkout-actions{
+    flex-direction:column;
+    gap:0.5rem
+}
+
+  .checkout-actions__btn{
+    width:100%
+}
+
+}

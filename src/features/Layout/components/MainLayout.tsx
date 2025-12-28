@@ -32,6 +32,10 @@ export function MainLayout() {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
+  const handleClearCart = () => {
+    setCartItems([]);
+  };
+
   const totalCartItems = cartItems.reduce(
     (sum, item) => sum + item.quantity,
     0
@@ -53,6 +57,7 @@ export function MainLayout() {
             onAddToCart: handleAddToCart,
             onUpdateQuantity: handleUpdateQuantity,
             onRemoveItem: handleRemoveItem,
+            onClearCart: handleClearCart,
             onCloseCart: () => setIsCartOpen(false),
           }}
         />
