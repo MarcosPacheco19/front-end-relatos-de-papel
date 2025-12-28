@@ -1,5 +1,6 @@
 import { ShoppingCart, BookOpen, Search, Menu, User } from "lucide-react";
 import "../styles/Header.css";
+import { useNavigate } from "react-router-dom";
 
 type HeaderProps = {
   cartItemsCount: number;
@@ -12,14 +13,16 @@ export function Header({
   onCartClick,
   onSearchChange,
 }: HeaderProps) {
+  const navigate = useNavigate();
+  
   return (
     <header className="header">
       <div className="header__container">
         <div className="header__content">
           {/* Logo */}
-          <div className="header__logo">
-            <BookOpen className="header__logo-icon" />
-            <span className="header__logo-text">LibrosMundo</span>
+          <div className="header__logo" onClick={() => navigate("/")}>
+            <img className="header__logo-icon" src="/public/assets/relatos-papel.png" alt="Relatos de papel" />
+            <span className="header__logo-text">Relatos de papel</span>
           </div>
 
           {/* Search Bar */}
@@ -37,7 +40,7 @@ export function Header({
 
           {/* Right Actions */}
           <div className="header__actions">
-            <button className="header__account">
+            <button className="header__account" onClick={() => navigate("/login")}>
               <User className="header__account-icon" />
               <span>Cuenta</span>
             </button>

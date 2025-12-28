@@ -9,7 +9,7 @@
 }
 
 .header__content {
-  @apply flex items-center justify-between h-16;
+  @apply flex items-center justify-between h-26;
 }
 
 .header__logo {
@@ -17,11 +17,11 @@
 }
 
 .header__logo-icon {
-  @apply w-8 h-8 text-indigo-600;
+  @apply w-24 h-24 text-indigo-600;
 }
 
 .header__logo-text {
-  @apply text-2xl text-gray-900;
+  @apply text-3xl text-gray-900;
 }
 
 .header__search {
