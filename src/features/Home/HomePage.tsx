@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Hero } from "./components/Hero";
 import { CategoryFilter } from "./components/CategoryFilter";
@@ -7,6 +7,7 @@ import { Cart } from "../Cart/components/Cart";
 import { Button } from "../../components/ui/Button";
 import type { Book, CartItem } from "./types/book";
 import { MOCK_BOOKS, CATEGORIES } from "./data/mockBooks";
+import { useBookFilter } from "./hooks/useBookFilter";
 import "./styles/HomePage.css";
 
 interface LayoutContextType {
@@ -32,16 +33,11 @@ export function HomePage() {
 
   const [selectedCategory, setSelectedCategory] = useState("Todos");
 
-  const filteredBooks = useMemo(() => {
-    return MOCK_BOOKS.filter((book) => {
-      const matchesCategory =
-        selectedCategory === "Todos" || book.category === selectedCategory;
-      const matchesSearch =
-        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        book.author.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
-  }, [selectedCategory, searchQuery]);
+  const { filteredBooks, resultsMessage, hasResults } = useBookFilter({
+    books: MOCK_BOOKS,
+    selectedCategory,
+    searchQuery,
+  });
 
   return (
     <div className="home-page">
@@ -60,12 +56,7 @@ export function HomePage() {
               ? "Todos los Libros"
               : selectedCategory}
           </h2>
-          <p className="home-page__subtitle">
-            {filteredBooks.length}{" "}
-            {filteredBooks.length === 1
-              ? "libro encontrado"
-              : "libros encontrados"}
-          </p>
+          <p className="home-page__subtitle">{resultsMessage}</p>
         </div>
 
         <div className="home-page__grid">
@@ -74,7 +65,7 @@ export function HomePage() {
           ))}
         </div>
 
-        {filteredBooks.length === 0 && (
+        {!hasResults && (
           <div className="home-page__empty">
             <p className="home-page__empty-message">No se encontraron libros</p>
             <Button

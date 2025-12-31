@@ -1,88 +1,47 @@
+import { useFooterNavigation } from "../hooks/useFooterNavigation";
+import "../styles/Footer.css";
+
 export function Footer() {
+  const { footerSections, companyInfo, handleLinkClick } =
+    useFooterNavigation();
+
   return (
-    <footer className="bg-gray-900 text-white mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl mb-4">LibrosMundo</h3>
-            <p className="text-gray-400">
-              Tu librería online de confianza con los mejores títulos al mejor
-              precio.
-            </p>
+    <footer className="footer">
+      <div className="footer__container">
+        <div className="footer__grid">
+          {/* Sección de Información de la Compañía */}
+          <div className="footer__section">
+            <h3 className="footer__section-title">{companyInfo.name}</h3>
+            <p className="footer__description">{companyInfo.description}</p>
           </div>
-          <div>
-            <h4 className="mb-4">Ayuda</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Preguntas Frecuentes
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Envíos
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Devoluciones
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Contacto
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="mb-4">Empresa</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Sobre Nosotros
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Prensa
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="mb-4">Legal</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Términos y Condiciones
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Política de Privacidad
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Cookies
-                </a>
-              </li>
-            </ul>
-          </div>
+
+          {/* Secciones de Navegación */}
+          {footerSections.map((section) => (
+            <div key={section.title} className="footer__section">
+              <h4 className="footer__section-subtitle">{section.title}</h4>
+              <ul className="footer__list">
+                {section.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="footer__link"
+                      onClick={() => handleLinkClick(link.href)}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 LibrosMundo. Todos los derechos reservados.</p>
+
+        {/* Pie de página con Copyright */}
+        <div className="footer__divider">
+          <p>
+            &copy; {companyInfo.copyrightYear} {companyInfo.name}. Todos los
+            derechos reservados.
+          </p>
         </div>
       </div>
     </footer>

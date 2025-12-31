@@ -9,11 +9,9 @@ import {
   DrawerClose,
 } from "../../../components/ui/Drawer";
 import { Button } from "../../../components/ui/Button";
+import { useCart } from "../hooks/useCart";
 import "../styles/Cart.css";
 import { useNavigate } from "react-router-dom";
-
-const FREE_SHIPPING_THRESHOLD = 50;
-const SHIPPING_COST = 5.99;
 
 interface CartProps {
   isOpen: boolean;
@@ -32,12 +30,14 @@ export function Cart({
 }: CartProps) {
   const navigate = useNavigate();
 
-  const subtotal = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
-  const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
-  const total = subtotal + shipping;
+  const {
+    subtotal,
+    shipping,
+    total,
+    isEmpty,
+    amountForFreeShipping,
+    formatCurrency,
+  } = useCart({ items });
 
   return (
     <Drawer open={isOpen} onOpenChange={onClose} direction="right">
@@ -55,7 +55,7 @@ export function Cart({
         </DrawerHeader>
 
         <div className="cart__content">
-          {items.length === 0 ? (
+          {isEmpty ? (
             <div className="cart__empty">
               <ShoppingBag className="cart__empty-icon" />
               <p className="cart__empty-title">Tu carrito está vacío</p>
@@ -123,26 +123,28 @@ export function Cart({
             <div className="cart__summary">
               <div className="cart__summary-row">
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>${formatCurrency(subtotal)}</span>
               </div>
               <div className="cart__summary-row">
                 <span>Envío</span>
                 <span>
-                  {shipping === 0 ? "Gratis" : `$${shipping.toFixed(2)}`}
+                  {shipping === 0 ? "Gratis" : `$${formatCurrency(shipping)}`}
                 </span>
               </div>
-              {subtotal < FREE_SHIPPING_THRESHOLD && (
+              {amountForFreeShipping > 0 && (
                 <p className="cart__shipping-message">
-                  Agrega ${(FREE_SHIPPING_THRESHOLD - subtotal).toFixed(2)} más
-                  para envío gratis
+                  Agrega ${formatCurrency(amountForFreeShipping)} más para envío
+                  gratis
                 </p>
               )}
               <div className="cart__total">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>${formatCurrency(total)}</span>
               </div>
             </div>
-            <Button className="w-full" onClick={() => navigate("/checkout")} >Proceder al Pago</Button>
+            <Button className="w-full" onClick={() => navigate("/checkout")}>
+              Proceder al Pago
+            </Button>
           </DrawerFooter>
         )}
       </DrawerContent>
