@@ -1,8 +1,8 @@
 import { useOutletContext } from "react-router-dom";
 import { useParams, Navigate } from "react-router-dom";
-import type { Book, CartItem } from "../../Home/types/book";
-import { MOCK_BOOKS } from "../../Home/data/mockBooks";
-import ProductDetails from "./ProductDetails";
+import type { Book, CartItem } from "../Home/types/book";
+import { MOCK_BOOKS } from "../Home/data/mockBooks";
+import ProductDetails from "./components/ProductDetails";
 
 type LayoutContextType = {
   onAddToCart: (book: Book) => void;

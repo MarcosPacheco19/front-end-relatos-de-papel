@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MainLayout } from "../features/Layout";
 import { HomePage } from "../features/Home";
-import BookDetailsPage from "../features/BookDetails/components/BookDetailsPage";
-import Login from "../features/Layout/components/Login";
-import Checkout from "../features/Chekout/components/Checkout";
+import BookDetailsPage from "../features/BookDetails/BookDetailsPage";
+import Login from "../features/Auth/Login";
+import Checkout from "../features/Chekout/Checkout";
 
 const router = createBrowserRouter([
   {

@@ -1,7 +1,7 @@
 @reference "../../../index.css";
 
 .checkbox {
-  @apply peer border bg-input-background size-4 shrink-0 rounded-[4px] border shadow-xs;
+  @apply border bg-input-background size-4 shrink-0 rounded-[4px] border shadow-xs;
   @apply transition-shadow outline-none;
   @apply focus-visible:border-ring focus-visible:ring-ring focus-visible:ring-[3px];
   @apply aria-invalid:ring-destructive aria-invalid:border-destructive;

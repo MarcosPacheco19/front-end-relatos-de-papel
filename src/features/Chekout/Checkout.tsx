@@ -1,19 +1,14 @@
 import { useState } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import "./styles/Checkout.css";
-import type { CartItem } from "../../Home/types/book";
-import { Label } from "../../../components/ui/Label";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "../../../components/ui/Card";
-import { Input } from "../../../components/ui/Input";
-import { Button } from "../../../components/ui/Button";
-import { Separator } from "../../../components/ui/Separator";
-import { Badge } from "../../../components/ui/Badge";
-import { Alert, AlertDescription } from "../../../components/ui/Alert";
+import type { CartItem } from "../Home/types/book";
+import { Label } from "@/components/ui/Label";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card";
+import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/Button";
+import { Separator } from "@/components/ui/Separator";
+import { Badge } from "@/components/ui/Badge";
+import { Alert, AlertDescription } from "@/components/ui/Alert";
 
 type LayoutContextType = {
   cartItems: CartItem[];
