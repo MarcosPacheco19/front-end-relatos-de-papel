@@ -2,6 +2,18 @@ import { useState } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import "./styles/Checkout.css";
 import type { CartItem } from "../../Home/types/book";
+import { Label } from "../../../components/ui/Label";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from "../../../components/ui/Card";
+import { Input } from "../../../components/ui/Input";
+import { Button } from "../../../components/ui/Button";
+import { Separator } from "../../../components/ui/Separator";
+import { Badge } from "../../../components/ui/Badge";
+import { Alert, AlertDescription } from "../../../components/ui/Alert";
 
 type LayoutContextType = {
   cartItems: CartItem[];
@@ -39,75 +51,119 @@ export default function Checkout() {
   };
 
   return (
-    <div className="checkout-page" style={{ padding: 20, display: "flex", justifyContent: "center" }}>
-      <div style={{ width: 680, maxWidth: "100%" }}>
-        <h2>Pago</h2>
-        {cartItems.length === 0 ? (
-          <p>Tu carrito está vacío.</p>
-        ) : (
-          <div>
-            <div style={{ marginBottom: 16 }}>
-              {cartItems.map((item) => (
-                <div key={item.id} style={{ display: "flex", justifyContent: "space-between", padding: 8, borderBottom: "1px solid #eee" }}>
-                  <div>
-                    <div style={{ fontWeight: 600 }}>{item.title}</div>
-                    <div style={{ fontSize: 12, color: "#666" }}>{item.author} • x{item.quantity}</div>
+    <div className="checkout-page">
+      <Card className="checkout-card">
+        <CardHeader>
+          <CardTitle>Resumen de Pago</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {cartItems.length === 0 ? (
+            <Alert>
+              <AlertDescription>Tu carrito está vacío.</AlertDescription>
+            </Alert>
+          ) : (
+            <>
+              <div className="checkout-items">
+                <h3 className="checkout-items__title">Productos</h3>
+                {cartItems.map((item) => (
+                  <div key={item.id} className="checkout-item">
+                    <div className="checkout-item__info">
+                      <div className="checkout-item__title">{item.title}</div>
+                      <div className="checkout-item__meta">
+                        {item.author} •{" "}
+                        <Badge variant="secondary">x{item.quantity}</Badge>
+                      </div>
+                    </div>
+                    <div className="checkout-item__price">
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </div>
                   </div>
-                  <div style={{ fontWeight: 600 }}>${(item.price * item.quantity).toFixed(2)}</div>
-                </div>
-              ))}
-            </div>
-
-            <form onSubmit={handlePay}>
-              <div style={{ marginBottom: 8 }}>
-                <label className="checkout-form__label">Nombre completo</label>
-                <input className="checkout-form__input" value={name} onChange={(e) => setName(e.target.value)} />
+                ))}
               </div>
 
-              <div style={{ marginBottom: 8 }}>
-                <label className="checkout-form__label">Número de tarjeta</label>
-                <input className="checkout-form__input" value={card} onChange={(e) => setCard(e.target.value)} maxLength={19} placeholder="1234 5678 9012 3456" />
-              </div>
+              <Separator className="my-6" />
 
-              <div className="checkout-form__row" style={{ marginBottom: 8 }}>
+              <form onSubmit={handlePay} className="checkout-form">
+                <h3 className="checkout-form__title">Información de Pago</h3>
+
                 <div className="checkout-form__field">
-                  <label className="checkout-form__label">Vencimiento (MM/AA)</label>
-                  <input
-                    className="checkout-form__input checkout-form__input--small"
-                    value={expiry}
-                    onChange={(e) => setExpiry(e.target.value)}
-                    maxLength={5}
-                    placeholder="MM/AA"
+                  <Label htmlFor="name">Nombre completo</Label>
+                  <Input
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Juan Pérez"
                   />
                 </div>
 
                 <div className="checkout-form__field">
-                  <label className="checkout-form__label">CVV</label>
-                  <input
-                    className="checkout-form__input checkout-form__input--small checkout-form__input--cvv"
-                    value={cvv}
-                    onChange={(e) => setCvv(e.target.value)}
-                    maxLength={4}
-                    placeholder="123"
+                  <Label htmlFor="card">Número de tarjeta</Label>
+                  <Input
+                    id="card"
+                    value={card}
+                    onChange={(e) => setCard(e.target.value)}
+                    maxLength={19}
+                    placeholder="1234 5678 9012 3456"
                   />
                 </div>
-              </div>
 
-              <div style={{ marginBottom: 8 }}>
-                <label className="checkout-form__label">Dirección</label>
-                <input className="checkout-form__input" value={address} onChange={(e) => setAddress(e.target.value)} />
-              </div>
+                <div className="checkout-form__row">
+                  <div className="checkout-form__field">
+                    <Label htmlFor="expiry">Vencimiento (MM/AA)</Label>
+                    <Input
+                      id="expiry"
+                      value={expiry}
+                      onChange={(e) => setExpiry(e.target.value)}
+                      maxLength={5}
+                      placeholder="MM/AA"
+                    />
+                  </div>
 
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 12 }}>
-                <div style={{ fontSize: 18, fontWeight: 700 }}>Total: ${total.toFixed(2)}</div>
-                <button type="submit" disabled={loading} style={{ padding: "10px 18px", background: "#111827", color: "#fff", border: "none", borderRadius: 6 }}>
-                  {loading ? "Procesando..." : "Pagar"}
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
-      </div>
+                  <div className="checkout-form__field">
+                    <Label htmlFor="cvv">CVV</Label>
+                    <Input
+                      id="cvv"
+                      value={cvv}
+                      onChange={(e) => setCvv(e.target.value)}
+                      maxLength={4}
+                      placeholder="123"
+                      type="password"
+                    />
+                  </div>
+                </div>
+
+                <div className="checkout-form__field">
+                  <Label htmlFor="address">Dirección de envío</Label>
+                  <Input
+                    id="address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Calle, número, ciudad, código postal"
+                  />
+                </div>
+
+                <Separator className="my-6" />
+
+                <div className="checkout-total">
+                  <span className="checkout-total__label">Total a pagar:</span>
+                  <span className="checkout-total__amount">
+                    ${total.toFixed(2)}
+                  </span>
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  size="lg"
+                  className="checkout-submit"
+                >
+                  {loading ? "Procesando..." : "Confirmar Pago"}
+                </Button>
+              </form>
+            </>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
