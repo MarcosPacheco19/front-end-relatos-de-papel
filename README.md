@@ -231,37 +231,3 @@ Si el puerto 5173 está ocupado, Vite automáticamente usará el siguiente dispo
 ```bash
 pnpm dev -- --port 3000
 ```
-
-## 📄 Licencia
-
-Este proyecto es parte de un proyecto académico de Maestría en Desarrollo Web Full Stack.
-
----
-
-Desarrollado con ❤️ para Relatos de Papel
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-globalIgnores(['dist']),
-{
-files: ['**/*.{ts,tsx}'],
-extends: [
-// Other configs...
-// Enable lint rules for React
-reactX.configs['recommended-typescript'],
-// Enable lint rules for React DOM
-reactDom.configs.recommended,
-],
-languageOptions: {
-parserOptions: {
-project: ['./tsconfig.node.json', './tsconfig.app.json'],
-tsconfigRootDir: import.meta.dirname,
-},
-// other options...
-},
-},
-])
-
-```
-
-```

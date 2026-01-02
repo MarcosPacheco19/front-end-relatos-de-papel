@@ -34,7 +34,6 @@ export function Login() {
 
     setIsLoading(true);
 
-    // Simular llamada a API
     setTimeout(() => {
       setIsLoading(false);
       navigate("/");
