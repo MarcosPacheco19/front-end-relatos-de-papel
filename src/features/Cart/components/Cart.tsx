@@ -142,7 +142,7 @@ export function Cart({
                 <span>${formatCurrency(total)}</span>
               </div>
             </div>
-            <Button className="w-full" onClick={() => navigate("/checkout")}>
+            <Button className="w-full checkout-btn" onClick={() => navigate("/checkout")}>
               Proceder al Pago
             </Button>
           </DrawerFooter>
