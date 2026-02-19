@@ -11,14 +11,18 @@ export function MainLayout() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const handleAddToCart = (book: Book) => {
+    const quantityToAdd = (book as any).quantity || 1;
+    
     setCartItems((prevItems) => {
       const existingItem = prevItems.find((item) => item.id === book.id);
       if (existingItem) {
         return prevItems.map((item) =>
-          item.id === book.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === book.id 
+            ? { ...item, quantity: item.quantity + quantityToAdd } 
+            : item
         );
       }
-      return [...prevItems, { ...book, quantity: 1 }];
+      return [...prevItems, { ...book, quantity: quantityToAdd }];
     });
   };
 
