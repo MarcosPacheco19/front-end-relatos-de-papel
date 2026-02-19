@@ -40,6 +40,9 @@
 
 .login-card__error {
   margin-bottom: 0.5rem;
+  background-color: #fef2f2;
+  border-color: #fecaca;
+  color: #dc2626;
 }
 
 .login-card__options {

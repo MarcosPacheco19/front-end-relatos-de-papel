@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/Button";
 import { Alert, AlertDescription } from "@/components/ui/Alert";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Separator } from "@/components/ui/Separator";
+import { validateUserCredentialsWithStorage } from "./data/users";
+import type { User } from "./data/users";
 import "./styles/Login.css";
 
 export function Login() {
@@ -34,8 +36,23 @@ export function Login() {
 
     setIsLoading(true);
 
+    // Validar credenciales
+    const user = validateUserCredentialsWithStorage(email, password);
+    
+    if (!user) {
+      setIsLoading(false);
+      setError("Correo electrónico o contraseña incorrectos");
+      return;
+    }
+
+    // Mostrar mensaje de bienvenida según el rol
+    const welcomeMessage = user.role === 'admin' 
+      ? `¡Bienvenido administrador ${user.username}!`
+      : `¡Bienvenido ${user.username}!`;
+
     setTimeout(() => {
       setIsLoading(false);
+      window.alert(welcomeMessage);
       navigate("/");
     }, 1000);
   };
