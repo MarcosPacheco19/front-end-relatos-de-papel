@@ -3,6 +3,7 @@ import { MainLayout } from "../features/Layout";
 import { HomePage } from "../features/Home";
 import BookDetailsPage from "../features/BookDetails/BookDetailsPage";
 import Login from "../features/Auth/Login";
+import Register from "../features/Auth/Register";
 import Checkout from "../features/Chekout/Checkout";
 
 const router = createBrowserRouter([
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
       {
         index: true,
