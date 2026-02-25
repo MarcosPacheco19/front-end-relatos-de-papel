@@ -43,14 +43,14 @@ describe('E-commerce Flow: Add to Cart and Checkout', () => {
     // 1. Navegar a la página principal
     await driver.get('http://localhost:5173/');
     await driver.wait(until.elementLocated(By.css('.book-card')), 10000);
-    await global.takeFullPageScreenshot(driver, 'pagina-principal');
-
+    
     // 2. Verificar que hay productos en la página
     const productCards = await driver.findElements(By.css('.book-card'));
     expect(productCards.length).toBeGreaterThan(0);
-
+    
     // 3. Hacer clic en el primer producto para ver los detalles
     await scrollToElement(driver, productCards[0]);
+    await global.takeFullPageScreenshot(driver, 'pagina-principal');
     await productCards[0].click();
     await driver.wait(until.elementLocated(By.css('.book-details__title')), 10000);
     await global.takeFullPageScreenshot(driver, 'pagina-detalles');
@@ -75,6 +75,7 @@ describe('E-commerce Flow: Add to Cart and Checkout', () => {
     await scrollToElement(driver, quantityDisplay);
     const quantityText = await quantityDisplay.getText();
     expect(quantityText).toBe('2');
+    await global.takeFullPageScreenshot(driver, 'pagina-detalles-cantidad-2');
 
     // 6. Agregar al carrito
     const addToCartButton = await driver.findElement(By.css('.book-details__btn'));
@@ -104,6 +105,7 @@ describe('E-commerce Flow: Add to Cart and Checkout', () => {
     await scrollToElement(driver, cartItemQuantity);
     const cartQuantityText = await cartItemQuantity.getText();
     expect(cartQuantityText).toBe('2');
+    await global.takeFullPageScreenshot(driver, 'pagina-carrito');
 
     // 11. Proceder al checkout
     const checkoutButton = await driver.findElement(By.css('.checkout-btn'));
@@ -139,12 +141,12 @@ describe('E-commerce Flow: Add to Cart and Checkout', () => {
     const addressInput = await driver.findElement(By.id('address'));
     await scrollToElement(driver, addressInput);
     await addressInput.sendKeys('Calle Principal 123, Ciudad, 12345');
+    await global.takeFullPageScreenshot(driver, 'checkout-lleno');
 
     // 15. Hacer clic en confirmar pago
     const payButton = await driver.findElement(By.css('.checkout-submit'));
     await scrollToElement(driver, payButton);
     await payButton.click();
-    await global.takeFullPageScreenshot(driver, 'checkout-lleno');
 
     // 16. Verificar que el pago fue exitoso
     await driver.wait(until.alertIsPresent(), 5000);
