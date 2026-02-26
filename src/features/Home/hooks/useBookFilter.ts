@@ -3,25 +3,34 @@ import type { Book } from "../types/book";
 
 interface UseBookFilterProps {
   books: Book[];
-  selectedCategory: string;
+  selectedCategoryId: string | null; // null = Todos
   searchQuery: string;
 }
 
 export const useBookFilter = ({
   books,
-  selectedCategory,
+  selectedCategoryId,
   searchQuery,
 }: UseBookFilterProps) => {
   const filteredBooks = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+
     return books.filter((book) => {
+      // 🔹 Filtro por categoría usando UUID
       const matchesCategory =
-        selectedCategory === "Todos" || book.category === selectedCategory;
+        selectedCategoryId === null || book.categoryId === selectedCategoryId;
+
+      // 🔹 Filtro por búsqueda
       const matchesSearch =
-        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        book.author.toLowerCase().includes(searchQuery.toLowerCase());
+        !query ||
+        book.title.toLowerCase().includes(query) ||
+        book.author.toLowerCase().includes(query) ||
+        (book.isbn ?? "").toLowerCase().includes(query) ||
+        (book.categoryName ?? "").toLowerCase().includes(query);
+
       return matchesCategory && matchesSearch;
     });
-  }, [books, selectedCategory, searchQuery]);
+  }, [books, selectedCategoryId, searchQuery]);
 
   const resultsCount = filteredBooks.length;
 

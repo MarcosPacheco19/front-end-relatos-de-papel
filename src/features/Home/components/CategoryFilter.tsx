@@ -1,45 +1,47 @@
 import { Button } from "../../../components/ui/Button";
 import { cn } from "../../../lib/utils";
 import "../styles/CategoryFilter.css";
+import type { CategoryResponse } from "../api/home.api-types";
 
 interface CategoryFilterProps {
-  categories: readonly string[];
-  selectedCategory: string;
-  onSelectCategory: (category: string) => void;
+  categories: readonly CategoryResponse[];
+  selectedCategoryId: string | null; // null = Todos
+  onSelectCategoryId: (categoryId: string | null) => void;
 }
 
 export function CategoryFilter({
   categories,
-  selectedCategory,
-  onSelectCategory,
+  selectedCategoryId,
+  onSelectCategoryId,
 }: CategoryFilterProps) {
   return (
     <div className="category-filter">
       <div className="category-filter__container">
         <div className="category-filter__list">
           <Button
-            onClick={() => onSelectCategory("Todos")}
+            onClick={() => onSelectCategoryId(null)}
             className={cn(
               "category-filter__button",
-              selectedCategory === "Todos"
+              selectedCategoryId === null
                 ? "category-filter__button--active"
-                : "category-filter__button--inactive"
+                : "category-filter__button--inactive",
             )}
           >
             Todos
           </Button>
-          {categories.map((category) => (
+
+          {categories.map((c) => (
             <Button
-              key={category}
-              onClick={() => onSelectCategory(category)}
+              key={c.id}
+              onClick={() => onSelectCategoryId(c.id)}
               className={cn(
                 "category-filter__button",
-                selectedCategory === category
+                selectedCategoryId === c.id
                   ? "category-filter__button--active"
-                  : "category-filter__button--inactive"
+                  : "category-filter__button--inactive",
               )}
             >
-              {category}
+              {c.name}
             </Button>
           ))}
         </div>

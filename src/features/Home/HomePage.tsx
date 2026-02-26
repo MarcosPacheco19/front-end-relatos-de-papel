@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { Hero } from "./components/Hero";
 import { CategoryFilter } from "./components/CategoryFilter";
@@ -6,9 +6,12 @@ import { BookCard } from "./components/BookCard";
 import { Cart } from "../Cart/components/Cart";
 import { Button } from "../../components/ui/Button";
 import type { Book, CartItem } from "./types/book";
-import { MOCK_BOOKS, CATEGORIES } from "./data/mockBooks";
 import { useBookFilter } from "./hooks/useBookFilter";
 import "./styles/HomePage.css";
+
+// ✅ NUEVO: hooks API
+import { useCategories } from "./hooks/useCategories";
+import { useBooks } from "./hooks/useBooks";
 
 interface LayoutContextType {
   searchQuery: string;
@@ -31,33 +34,72 @@ export function HomePage() {
     onCloseCart,
   } = useOutletContext<LayoutContextType>();
 
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
+  // ✅ null = Todos
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+    null,
+  );
 
+  // ✅ categorías del backend
+  const {
+    data: categories = [],
+    isLoading: catsLoading,
+    isError: catsError,
+  } = useCategories();
+
+  // ✅ libros del backend (ya vienen con price/images random si usas mapper)
+  const params = useMemo(
+    () => ({
+      q: searchQuery.trim() || undefined,
+      categoryId: selectedCategoryId ?? undefined,
+      visible: true,
+    }),
+    [searchQuery, selectedCategoryId],
+  );
+
+  const {
+    data: books = [],
+    isLoading: booksLoading,
+    isError: booksError,
+  } = useBooks(params);
+
+  // ✅ (opcional) filtro local adicional
   const { filteredBooks, resultsMessage, hasResults } = useBookFilter({
-    books: MOCK_BOOKS,
-    selectedCategory,
+    books,
+    selectedCategoryId,
     searchQuery,
   });
+
+  const selectedCategoryName =
+    selectedCategoryId === null
+      ? "Todos los Libros"
+      : (categories.find((c) => c.id === selectedCategoryId)?.name ??
+        "Categoría");
 
   return (
     <div className="home-page">
       <Hero />
 
-      <CategoryFilter
-        categories={CATEGORIES}
-        selectedCategory={selectedCategory}
-        onSelectCategory={setSelectedCategory}
-      />
+      {catsLoading && <div style={{ padding: 16 }}>Cargando categorías...</div>}
+      {catsError && (
+        <div style={{ padding: 16 }}>Error cargando categorías</div>
+      )}
+
+      {!catsLoading && !catsError && (
+        <CategoryFilter
+          categories={categories}
+          selectedCategoryId={selectedCategoryId}
+          onSelectCategoryId={setSelectedCategoryId}
+        />
+      )}
 
       <main className="home-page__main">
         <div className="home-page__header">
-          <h2 className="home-page__title">
-            {selectedCategory === "Todos"
-              ? "Todos los Libros"
-              : selectedCategory}
-          </h2>
+          <h2 className="home-page__title">{selectedCategoryName}</h2>
           <p className="home-page__subtitle">{resultsMessage}</p>
         </div>
+
+        {booksLoading && <div style={{ padding: 16 }}>Cargando libros...</div>}
+        {booksError && <div style={{ padding: 16 }}>Error cargando libros</div>}
 
         <div className="home-page__grid">
           {filteredBooks.map((book) => (
@@ -65,13 +107,11 @@ export function HomePage() {
           ))}
         </div>
 
-        {!hasResults && (
+        {!booksLoading && !hasResults && (
           <div className="home-page__empty">
             <p className="home-page__empty-message">No se encontraron libros</p>
             <Button
-              onClick={() => {
-                setSelectedCategory("Todos");
-              }}
+              onClick={() => setSelectedCategoryId(null)}
               className="home-page__empty-button"
             >
               Ver todos los libros
