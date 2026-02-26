@@ -19,8 +19,10 @@ export default function BookDetailsPage() {
     return <Navigate to="/" replace />;
   }
 
-  const handleAddToCart = (b: Book, _qty?: number) => {
-    outlet?.onAddToCart(b);
+  const handleAddToCart = (b: Book, qty: number = 1) => {
+    // Create a temporary book with the selected quantity
+    const bookWithQuantity = { ...b, quantity: qty };
+    outlet?.onAddToCart(bookWithQuantity);
   };
 
   return <ProductDetails book={book} onAddToCart={handleAddToCart} />;
